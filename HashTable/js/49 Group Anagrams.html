@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Group Anagrams</title>
+  </head>
+  <body>
+    <h2>
+      Given an array of strings strs, group the anagrams together. You can
+      return the answer in any order. An Anagram is a word or phrase formed by
+      rearranging the letters of a different word or phrase, typically using all
+      the original letters exactly once.
+    </h2>
+    <ol>
+      <li>
+        Example 1: Input: strs = ["eat","tea","tan","ate","nat","bat"] Output:
+        [["bat"],["nat","tan"],["ate","eat","tea"]]
+      </li>
+      <li>Example 2: Input: strs = [""] Output: [[""]]</li>
+      <li>Example 3: Input: strs = ["a"] Output: [["a"]]</li>
+    </ol>
+  </body>
+  <script>
+    function groupAnagrams(strs) {
+      const dic = {};
+
+      for (let str of strs) {
+        // 对字符串排序
+        let sortedStr = str.split("").sort().join("");
+        console.log("sortedStr", sortedStr); //案照字母排序
+
+        // 将排序后的字符串作为键，原始字符串作为值，存储在对象中
+        if (!(sortedStr in dic)) {
+          dic[sortedStr] = [];
+        }
+        dic[sortedStr].push(str);
+      }
+      console.log("dic", dic);
+      // 将对象中的值（字符串列表）放入结果数组中
+      const result = [];
+      for (let key in dic) {
+        result.push(dic[key]);
+      }
+
+      // 编写一个比较函数，用于比较子数组的长度
+      function compareLength(a, b) {
+        return a.length - b.length;
+      }
+      result.sort(compareLength); 
+      return result;
+    }
+
+    let strs = ["eat", "tea", "tan", "ate", "nat", "bat"];
+    console.log(groupAnagrams(strs));
+  </script>
+</html>
