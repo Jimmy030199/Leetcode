@@ -46,6 +46,7 @@
   </body>
   <script>
       function intToRoman(num) {
+        let Num =num
         let roman = "";
         let romanDic = {
           1000: "M",
@@ -65,13 +66,13 @@
         let romanDicKeys = Object.keys(romanDic).map(key => parseInt(key)).sort((a,b) =>{ return b-a});
         console.log(romanDicKeys)
         romanDicKeys.forEach(key => {
-          if(num >= key){
-            let multipleFloor = Math.floor(num/key);
+          if(Num >= key){
+            let multipleFloor = Math.floor(Num/key);
 
             for(let i = 0;i<multipleFloor;i++){
               roman += romanDic[key];
             }
-            num = num % key;
+            Num = Num % key;
 
           }
           }
@@ -80,13 +81,13 @@
         
       }
 
-      let num = 3;
-      console.log(intToRoman(num));
 
-      num = 58;
-      console.log(intToRoman(num));
+      console.log(intToRoman(3));
 
-      num = 1994;
-      console.log(intToRoman(num));
+
+      console.log(intToRoman(58));
+
+
+      console.log(intToRoman(1994));
   </script>
 </html>
