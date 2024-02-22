@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valid Parentheses</title>
+  </head>
+  <body>
+    <h2>
+      Given a string s containing just the characters '(', ')', '{', '}', '['
+      and ']', determine if the input string is valid. An input string is valid
+      if: 1.Open brackets must be closed by the same type of brackets. 2.Open
+      brackets must be closed in the correct order. 3.Every close bracket has a
+      corresponding open bracket of the same type.
+    </h2>
+    <ul>
+      <li>Example 1: Input: s = "()" Output: true</li>
+      <li>Example 2: Input: s = "()[]{}" Output: true</li>
+      <li>Example 3: Input: s = "(]" Output: false</li>
+    </ul>
+  </body>
+  <script>
+    function isValid(s) {
+      let stack = [];
+      let dic ={
+        '(':')',
+        '[':']',
+        '{':'}',
+      };
+      let outputValue = false;
+      for(let i = 0;i<s.length;i++){
+       
+        if(s[i]=='(' || s[i]=='[' || s[i]=='{'){
+          stack.push(s[i]);
+        }else{
+          let topStackChar = stack.pop();
+          if(dic[topStackChar] == s[i]){
+            outputValue = true;
+          }
+        }
+      }
+      
+      return outputValue;
+    }
+
+    let s = "()";
+    console.log(isValid(s));
+
+    s = "()[]{}";
+    console.log(isValid(s));
+
+    s = "(]";
+    console.log(isValid(s));
+    
+  </script>
+</html>
