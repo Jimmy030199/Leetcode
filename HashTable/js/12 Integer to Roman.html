@@ -45,6 +45,48 @@
     </ul>
   </body>
   <script>
-   
+      function intToRoman(num) {
+        let roman = "";
+        let romanDic = {
+          1000: "M",
+          900: "CM",
+          500: "D",
+          400: "CD",
+          100: "C",
+          90: "XC",
+          50: "L",
+          40: "XL",
+          10: "X",
+          9: "IX",
+          5: "V",
+          4: "IV",
+          1: "I",
+        };
+        let romanDicKeys = Object.keys(romanDic).map(key => parseInt(key)).sort((a,b) =>{ return b-a});
+        console.log(romanDicKeys)
+        romanDicKeys.forEach(key => {
+          if(num >= key){
+            let multipleFloor = Math.floor(num/key);
+
+            for(let i = 0;i<multipleFloor;i++){
+              roman += romanDic[key];
+            }
+            num = num % key;
+
+          }
+          }
+        );
+        return roman;
+        
+      }
+
+      let num = 3;
+      console.log(intToRoman(num));
+
+      num = 58;
+      console.log(intToRoman(num));
+
+      num = 1994;
+      console.log(intToRoman(num));
   </script>
 </html>
