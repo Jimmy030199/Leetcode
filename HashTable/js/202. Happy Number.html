@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Number</title>
+  </head>
+  <body>
+    <h2>
+      Write an algorithm to determine if a number n is happy.
+
+      A happy number is a number defined by the following process:
+
+      Starting with any positive integer, replace the number by the sum of the squares of its digits.
+      Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
+      Those numbers for which this process ends in 1 are happy.
+      Return true if n is a happy number, and false if not.
+    </h2>
+    <ol>
+      <li>
+        Example 1: 
+        Input: n = 19
+        Output: true
+        Explanation:
+        1² + 9² = 82
+        8² + 2² = 68
+        6² + 8² = 100
+        1² + 0² + 0² = 1
+      </li>
+      <li>
+        Example 2: 
+        Input: n = 2
+        Output: false
+      </li>
+    </ol>
+  </body>
+  <script>
+
+      function isHappy(n) {
+        let stringNum = n.toString();
+        let numArray  =[];
+        for(let i =0;i<stringNum.length;i++){
+          numArray.push(parseInt(stringNum[i]));
+        }
+        let squaresSum =0 ;
+        numArray.forEach((num)=>{
+          squaresSum+=num*num;
+        })
+
+        if(squaresSum>9){
+          return isHappy(squaresSum);
+        }else{
+          if(squaresSum == 1){
+            return true;
+          }else{
+            return false;
+          }
+        }
+      }
+
+      let n = 19;
+      console.log(isHappy(n));
+
+      let n2 = 2;
+      console.log(isHappy(n2));
+
+      let n3 = 998;
+      console.log(isHappy(n2));
+
+      let n4 = 86;
+      console.log(isHappy(n4));
+
+
+      function isHappy2(n) {
+        let seen = {}; // 用于存储出现过的数字
+
+        while(n != 1 && !seen[n]){
+          seen[n] = true;
+          
+          let sum = 0;
+          while(n > 0){
+            let digit = n % 10;
+            sum += digit * digit;
+            n = Math.floor(n / 10);
+          }
+          n = sum; // 更新 n 为新的数字
+        }
+        return n === 1; // 如果 n 等于 1，说明是快乐数，否则不是
+      }
+
+      console.log(isHappy2(19));
+      console.log(isHappy2(2));
+      console.log(isHappy2(998));
+      console.log(isHappy2(86));
+
+  </script>
+</html>
