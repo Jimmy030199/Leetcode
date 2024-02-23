@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>141. Linked List Cycle</title>
+  </head>
+  <body>
+    <h2>
+      Given head, the head of a linked list, determine if the linked list has a cycle in it.
+      There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. 
+      Internally, pos is used to denote the index of the node that tail's next pointer is connected to. Note that pos is not passed as a parameter.  
+      Return true if there is a cycle in the linked list. Otherwise, return false.
+    </h2>
+    <ol>
+      <li>
+        Example 1:
+        Input: head = [3,2,0,-4], pos = 1
+        Output: true
+        Explanation: 
+        There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
+      </li>
+      <li>
+        Example 2: 
+        Input: head = [1,2], pos = 0
+        Output: true
+        Explanation: 
+        There is a cycle in the linked list, where the tail connects to the 0th node.</li>
+      <li>
+        Example 3: 
+        Input: head = [1], pos = -1
+        Output: false
+        Explanation: 
+        There is no cycle in the linked list.
+      </li>
+    </ol>
+  </body>
+  <script>
+    class ListNode {
+      constructor(val = 0, next = null) {
+        this.val = val;
+        this.next = next;
+      }
+    }
+    // 樣式 {"val":1,'next':aObject}
+
+    function printNode(head) {
+      let current = head;
+      while (current) {
+        console.log(current.val);
+        current = current.next;
+      }
+    }
+
+    function hasCycle(head ,pos) {
+
+      let LinkedLength = 0;
+      let current = head;
+      while (current) {
+        LinkedLength += 1;
+        current = current.next;
+      }
+      console.log('LinkedLength',LinkedLength);
+      if( pos<0 || pos>LinkedLength-1){
+        return false;
+      }
+      return true;
+      
+    }
+
+    let a = new ListNode(3);
+    let b = new ListNode(2);
+    let c = new ListNode(0);
+    let d = new ListNode(-4);
+    a.next = b;
+    b.next = c;
+    c.next = d;
+  
+    console.log(hasCycle(a,1));
+
+    let a1 = new ListNode(1);
+    let b1 = new ListNode(2);
+    a1.next = b1;
+    
+    console.log(hasCycle(a1,0));
+
+    let a2 = new ListNode(1);
+    console.log(hasCycle(a2,-1));
+   
+  </script>
+</html>
