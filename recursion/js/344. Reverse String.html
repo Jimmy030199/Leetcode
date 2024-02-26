@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>344. Reverse String</title>
+  </head>
+  <body>
+    <h2>
+      Write a function that reverses a string. The input string is given as an
+      array of characters s. You must do this by modifying the input array
+      in-place with O(1) extra memory.
+    </h2>
+    <ul>
+      <li>
+        Example 1: Input: s = ["h","e","l","l","o"] Output:
+        ["o","l","l","e","h"]
+      </li>
+      <li>
+        Example 2: Input: s = ["H","a","n","n","a","h"] Output:
+        ["h","a","n","n","a","H"]
+      </li>
+    </ul>
+  </body>
+  <script>
+    function reverseString(s) {    
+        let left = 0;
+        let right = s.length - 1;
+        while (left < right) {
+          let temp = s[left];
+          s[left] = s[right];
+          s[right] = temp;
+          left++;
+          right--;
+        }
+        return s;
+    }
+
+    let s = ["h", "e", "l", "l", "o"];
+    console.log(reverseString(s));
+
+    s = ["H", "a", "n", "n", "a", "h"];
+    console.log(reverseString(s));
+  </script>
+</html>
