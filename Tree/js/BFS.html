@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BFS (Breadth-first search)</title>
+</head>
+<body>
+    
+</body>
+<script>
+    class TreeNode{
+        constructor(value){
+            this.value = value;
+            this.left = null;
+            this.right = null;
+        }
+    }
+    let root = new TreeNode(1);
+    //第二層
+    let Node3 = new TreeNode(3);
+    let Node6 = new TreeNode(6);
+    root.left = Node3;
+    root.right = Node6;
+    //第三層
+    let Node4 = new TreeNode(4);
+    let Node5 = new TreeNode(5);
+    Node3.left = Node4;
+    Node3.right = Node5;
+    let Node7 = new TreeNode(7);
+    let Node9 = new TreeNode(9);
+    Node6.left = Node7;
+    Node6.right = Node9;
+
+    function BFS(root){
+        let queue = [root];
+        let result = [];
+        while(queue.length){
+            let shift = queue.shift();
+            result.push(shift.value);
+
+            if(shift.left){
+                queue.push(shift.left);
+            }
+            if(shift.right){
+                queue.push(shift.right);
+            }
+            
+        }
+        return result;
+    }
+    console.log(BFS(root));
+
+
+</script>
+</html>
