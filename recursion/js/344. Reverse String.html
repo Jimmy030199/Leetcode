@@ -23,23 +23,40 @@
     </ul>
   </body>
   <script>
-    function reverseString(s) {    
-        let left = 0;
-        let right = s.length - 1;
-        while (left < right) {
-          let temp = s[left];
-          s[left] = s[right];
-          s[right] = temp;
-          left++;
-          right--;
+    // function reverseString(s) {    
+    //     let left = 0;
+    //     let right = s.length - 1;
+    //     while (left < right) {
+    //       let temp = s[left];
+    //       s[left] = s[right];
+    //       s[right] = temp;
+    //       left++;
+    //       right--;
+    //     }
+    //     return s;
+    // }
+
+    function reverseString(s) { 
+        const reverse = (left,right,s)=>{
+           if(left>=right){
+                return;
+           }
+            let temp = s[left];
+            s[left] = s[right];
+            s[right] = temp;
+           reverse(left+1,right-1,s);
         }
-        return s;
+
+        reverse(0,s.length-1,s);
     }
 
     let s = ["h", "e", "l", "l", "o"];
     console.log(reverseString(s));
+    console.log(s);
 
     s = ["H", "a", "n", "n", "a", "h"];
     console.log(reverseString(s));
+    console.log(s);
+
   </script>
 </html>
