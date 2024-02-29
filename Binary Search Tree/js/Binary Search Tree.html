@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Search Tree</title>
+</head>
+<body>
+
+    <script>
+        class TreeNode {
+            constructor(value) {
+                this.value = value;
+                this.left = null;
+                this.right = null;
+            }
+        }
+
+        const insert =(root,num)=>{
+            if(root == null){
+                return new TreeNode(num)
+            }
+            //走訪左子樹
+            if(num < root.value){
+              if(root.left == null){
+                root.left = new TreeNode(num)
+              }else{
+                insert(root.left,num)
+              }
+            }
+
+            //走訪右子樹
+            if(num > root.value){
+              if(root.right == null){
+                root.right = new TreeNode(num)
+              }else{
+                insert(root.right,num)
+              }
+            }
+        }
+        let r = new TreeNode(3);
+        insert(r, 2);   
+        insert(r, 5);
+        insert(r, 1);
+        insert(r, 4);
+        insert(r, 6);
+
+        const dfs = (root)=>{
+            if(root == null){
+                return
+
+            }
+            dfs(root.left)
+            console.log(root.value)
+            dfs(root.right)
+        }
+        dfs(r)
+        let count = 0
+        const search =(root , target)=>{
+            count++;
+            if(root == null){
+                return '沒找到'
+            }
+            if(root.value == target){
+                return '找到了'
+            }
+            if(target < root.value){
+                return search(root.left,target)
+            }else{
+                return search(root.right,target)
+            }
+        }
+
+        console.log(search(r, 6));
+        console.log(count);
+
+
+    </script>
+</body>
+</html>

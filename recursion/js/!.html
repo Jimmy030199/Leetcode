@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>階乘</title>
+  </head>
+  <body></body>
+  <script>
+        //    function sum_of_list(list){
+        //        let listArr=[...list]
+
+        //        const sum=(Arr,result)=>{
+        //             let res = result
+        //             if(Arr.length==0){
+        //                 return result
+        //             }
+        //             resultshift = Arr.shift()
+        //             res= res + resultshift
+        //             return sum(Arr,res)
+
+        //        }
+
+        //        return sum(listArr,0)
+        //    }
+        //    console.log(  sum_of_list([1, 2, 3, 4, 5]));
+        //    console.log(  sum_of_list([10, 20, 30]));
+        //    console.log(  sum_of_list([5, 10, 15, 20]));
+
+        //    function power(num,exponent){
+
+        //         if(exponent == 1){
+        //             return num
+        //         }
+        //         return num*power(num,exponent-1)
+        //    }
+        //     console.log(power(2, 3));
+        //     console.log(power(3, 4));
+
+        function factorial(n) {
+          if (n == 1 || n == 0) {
+            return 1;
+          }
+          return n * factorial(n - 1);
+        }
+
+        // function stairs(inputNum) {
+        //   let count = 0;
+
+        //   const factorial = (n) => {
+        //     if (n == 1 || n == 0) {
+        //       return 1;
+        //     }
+        //     return n * factorial(n - 1);
+        //   };
+
+        //   const climb = (n) => {
+        //     if (n <= 0) {
+        //         count = 0
+        //       return ;
+        //     }
+        //     if (n == 1) {
+        //         count = 1
+        //       return ;
+        //     } else {
+        //       count=count+1 //用1走一步的方式
+        //       let floor = Math.floor(n / 2);
+        //       for (let i = 0; i < floor; i++) {
+        //         let countin2 = i + 1; //有幾個2
+        //         let remain = n - 2 * countin2; //有幾個1
+        //         let place = remain + countin2;
+        //         let eachCounts =
+        //           factorial(place) / (factorial(remain)* factorial(countin2));
+        //         count += eachCounts;
+        //       }
+        //     }
+        //   };
+
+        //   climb(inputNum);
+
+        //   return count;
+        // }
+
+        // console.log(stairs(2)); //2
+        // console.log(stairs(3)); //3
+        // console.log(stairs(6)); //13
+        // console.log(stairs(7)); //21
+
+
+    //     Given array nums = [-1, 0, 1, 2, -1, -4], //[-4,-1,-1,0,1,2]
+
+    // A solution set is:
+    // [
+    //   [-1, 0, 1],
+    //   [-1, -1, 2]
+    // ]
+
+    //[[-4,0,4],[-3,-1,4],[-3,0,3],[-2,-1,3],[-2,0,2],[-1,-1,2],[-1,0,1]]
+    //expected [[-4,0,4],[-4,1,3],[-3,-1,4],[-3,0,3],[-3,1,2],[-2,-1,3],[-2,0,2],[-1,-1,2],[-1,0,1]]
+
+    function sum0(nums){
+        let res =[];
+        nums.sort((a,b)=>a-b);
+        console.log(nums);
+        for(let i=0;i<nums.length;i++){
+            let shift = nums.shift();
+            let remain = 0-shift;
+            let arr = [...nums];
+            for(let j=0;j<arr.length;j++){
+                let numshift = arr.shift();
+                let secRemain = remain - numshift;
+                if(arr.includes(secRemain)){
+                    if(res.length){
+                        let last = res[res.length-1];
+                        if(last[0] == shift && last[1] == numshift && last[2] == secRemain){
+                            continue;
+                        }
+                    }
+                    res.push([shift,numshift,secRemain]);
+                } 
+
+            }
+
+        }
+
+        return res;
+
+    }
+
+    console.log(sum0([-1, 0, 1, 2, -1, -4])) 
+
+  </script>
+</html>
