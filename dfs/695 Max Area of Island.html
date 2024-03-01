@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>695. Max Area of Island</title>
+  </head>
+  <body>
+    <h2>
+      You are given an m x n binary matrix grid. An island is a group of 1's
+      (representing land) connected 4-directionally (horizontal or vertical.)
+      You may assume all four edges of the grid are surrounded by water. The
+      area of an island is the number of cells with a value 1 in the island.
+      Return the maximum area of an island in grid. If there is no island,
+      return 0.
+    </h2>
+    <ul>
+      <li>
+        Example 1: Input: grid = [ [0,0,1,0,0,0,0,1,0,0,0,0,0],
+        [0,0,0,0,0,0,0,1,1,1,0,0,0], [0,1,1,0,1,0,0,0,0,0,0,0,0],
+        [0,1,0,0,1,1,0,0,1,0,1,0,0], [0,1,0,0,1,1,0,0,1,1,1,0,0],
+        [0,0,0,0,0,0,0,0,0,0,1,0,0], [0,0,0,0,0,0,0,1,1,1,0,0,0],
+        [0,0,0,0,0,0,0,1,1,0,0,0,0] ] Output: 6 Explanation: The answer is not
+        11, because the island must be connected 4-directionally.
+      </li>
+      <li>Example 2: Input: grid = [[0,0,0,0,0,0,0,0]] Output: 0</li>
+    </ul>
+  </body>
+  <script>
+    class TreeNode {
+      constructor(value) {
+        this.value = value;
+        this.right = null;
+        this.down = null;
+      }
+    }
+
+    function maxAreaOfIsland(grid) {
+      if (grid.length == 0) {
+        return 0;
+      }
+      const rows = grid.length;
+      const cols = grid[0].length;
+      let maxArea = 0;
+      let countAreaObj ={count: 0};
+      for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+          if (grid[i][j] == 1) {
+            dfs(grid, i, j, countAreaObj);
+            if (countAreaObj.count > maxArea) {
+              maxArea = countAreaObj.count;
+              console.log('maxArea',maxArea);
+            }
+            countAreaObj.count = 0; //清空
+          }
+        }
+      }
+
+      return maxArea;
+    }
+
+    function dfs(grid, row, col,countAreaObj) {
+      const rows = grid.length;
+      const cols = grid[0].length;
+      if (
+        row < 0 ||
+        col < 0 ||
+        row >= rows ||
+        col >= cols ||
+        grid[row][col] == 0
+      ) {
+        return;
+      }
+      countAreaObj.count=countAreaObj.count + 1 ;
+      // console.log('countAreaObj.count',countAreaObj.count);
+      grid[row][col] = 0;
+      dfs(grid, row + 1, col,countAreaObj); //向下
+      dfs(grid, row - 1, col,countAreaObj); //向上
+      dfs(grid, row, col + 1,countAreaObj); //向右
+      dfs(grid, row, col - 1,countAreaObj); //向左
+    }
+
+    let grid = [
+      [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+      [0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0],
+      [0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
+    ];
+
+
+    console.log(maxAreaOfIsland(grid));
+  </script>
+</html>
