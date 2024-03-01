@@ -68,5 +68,19 @@
     console.log(arrayNexting([5,4,0,3,1,6,2]))
     console.log(arrayNexting([0,1,2]))
 
+    const tagetTime = new Date('2024-03-01T17:30:00')
+    const currentTime = new Date()  
+    const num = Math.floor((tagetTime - currentTime)/1000)
+    const countdown  =(num)=>{
+      if (num<=0){
+        return
+      }
+      setTimeout(()=>{
+        console.log(num)
+        countdown(num-1)
+      },1000)
+    }
+    countdown(num)
+
   </script>
 </html>
