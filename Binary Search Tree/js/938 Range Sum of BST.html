@@ -59,6 +59,7 @@
     //10,5,15,3,7,null,18
     insert(r, 5);
     insert(r, 15);
+    insert(r, 3);
     
     insert(r, 7);
     insert(r, 18);
@@ -88,5 +89,69 @@
     };
     console.log(Range_Sum(r, 7, 15));
     console.log(count)
+
+
+    let r2 = new TreeNode(10);
+    //10,5,15,3,7,13,18,1,null,6
+    insert(r2, 5);
+    insert(r2, 15);
+    insert(r2, 3);
+    insert(r2, 7);
+    insert(r2, 13);
+    insert(r2, 18);
+    insert(r2, 1);
+    insert(r2, 6);
+    console.log(Range_Sum(r2, 6, 10));
+
+    console.log('------------------')
+    const bfs =(root)=>{
+      let queue = [root];
+      while(queue.length > 0){
+        let cur = queue.shift();
+        
+        if(cur.left){
+          queue.push(cur.left);
+        }
+        console.log(cur.value);
+        if(cur.right){
+          queue.push(cur.right);
+        }
+      }
+
+
+    }
+    // bfs(r);
+
+    let r3 = new TreeNode(5);
+    let node3 = new TreeNode(3);
+    let node7 = new TreeNode(7);
+    r3.left = node3;
+    r3.right = node7;
+    let node2 = new TreeNode(2);
+    node3.left = node2;
+
+    let node4 = new TreeNode(4);
+    let node9 = new TreeNode(9);
+    node7.left = node4;
+    node7.right = node9;
+    let node8 = new TreeNode(8);
+    node9.right = node8;
+
+    const dfs = (root)=>{
+      if(root == null){
+        return
+      }
+      dfs(root.left);
+      console.log(root.value);
+      dfs(root.right);
+    }
+
+    dfs(r3);
+
+
+
+
+
+
   </script>
 </html>
