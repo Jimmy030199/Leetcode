@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>C取</title>
+  </head>
+  <body></body>
+  <script>
+    // c取 n>=m
+    // hint n==m || n==0  return 1;
+    //      c取(n-1,m-1)+c取(n-1,m) otherwise
+
+    // recursive
+
+    function C_1(n, m) {
+      if (n == m || m == 0) {
+        return 1;
+      } else {
+        return C_1(n - 1, m - 1) + C_1(n - 1, m);
+      }
+    }
+
+    console.log("C_1(5,2)", C_1(5, 2));
+
+
+
+    // non-recursive
+    function C_2(n, m) {
+      let a = 1;
+      let b = 1;
+      let c = 1;
+      for (let i = 1; i <= n; i++) {
+        a = a * i;
+      }
+      for (let i = 1; i <= m; i++) {
+        b = b * i;
+      }
+      for (let i = 1; i <= n - m; i++) {
+        c = c * i;
+      }
+      return a / (b * c);
+    }
+
+    console.log("C_2(5,2)", C_2(5, 2));
+
+
+    function C_3(n, m){
+        let complement = n - m;
+        let max = m>complement?m:complement;
+
+        let top = 1;
+        let bottom = 1;
+
+        for(let i=max+1;i<=n;i++){
+            top = top * i;
+        }
+        for(let i=1;i<=n-max;i++){
+            bottom = bottom * i;
+        }
+
+        return top/bottom;
+
+    }
+    console.log("C_3(5,2)", C_3(5, 2));
+  </script>
+</html>

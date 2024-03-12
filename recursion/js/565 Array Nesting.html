@@ -68,7 +68,13 @@
     console.log(arrayNexting([5,4,0,3,1,6,2]))
     console.log(arrayNexting([0,1,2]))
 
-    const tagetTime = new Date('2024-03-01T17:30:00')
+    const tagetTime = new Date()
+    // 设置时间为下午17:30
+    tagetTime.setHours(17)
+    tagetTime.setMinutes(30)
+    tagetTime.setSeconds(0)
+    tagetTime.setMilliseconds(0)
+    console.log(tagetTime)
     const currentTime = new Date()  
     const num = Math.floor((tagetTime - currentTime)/1000)
     const countdown  =(num)=>{
