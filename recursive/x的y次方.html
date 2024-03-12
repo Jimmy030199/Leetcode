@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>x的y次方</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // hint y==0 return 1;
+    //      y==1 return x*Exp(x,y-1);
+
+    //recursive
+    function Exp(x,y){
+        if(y==0){
+            return 1;
+        }else{
+            return x*Exp(x,y-1);
+        }
+    }
+    console.log('Exp(3,4)',Exp(3,4));
+
+    //non-recursive
+    function Exp2(x,y){
+        let result = 1;
+        for(let i=1;i<=y;i++){
+            result = result*x;
+        }
+        return result;
+    }
+    console.log('Exp2(3,4)',Exp2(3,4));
+</script>
+</html>
