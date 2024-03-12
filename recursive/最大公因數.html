@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>最大公因數</title>
+  </head>
+  <body></body>
+  <script>
+    // hint m==0 return n;
+    //      m==n return m;
+    //      m>n return gcd(m-n,n);
+    //      m<n return gcd(m,n-m);
+
+    //recursive
+    function gcd(m, n) {
+        let r = m % n;
+        if(r==0){
+            return n;
+        }else{
+            return gcd(n,r);
+        }
+    }
+
+    console.log("gcd(12,8)", gcd(12, 8));
+    console.log("gcd(13,8)", gcd(13, 8));
+
+    //non-recursive
+    function gcd2(n,m){
+        while(m!=0){
+            let temp = m;
+            m = n%m;
+            n = temp;
+        }
+        return n;
+    }
+
+    console.log("gcd2(12,8)", gcd2(12, 8));
+    console.log("gcd2(13,8)", gcd2(13, 8));
+  </script>
+</html>
