@@ -23,16 +23,23 @@
     }
 
     console.log("gcd(12,8)", gcd(12, 8));
+    console.log("gcd(8,12)", gcd(8,12));
+
     console.log("gcd(13,8)", gcd(13, 8));
 
     //non-recursive
     function gcd2(n,m){
-        while(m!=0){
-            let temp = m;
-            m = n%m;
-            n = temp;
+        var a = 0
+        var b = max(m, n) //12
+        var r = min(m, n) // 8
+
+        while (r != 0) {
+            a = b
+            b = r
+            r = a % b
         }
-        return n;
+        return b
+
     }
 
     console.log("gcd2(12,8)", gcd2(12, 8));
