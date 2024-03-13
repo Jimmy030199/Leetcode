@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HanoiTower</title>
+</head>
+<body>
+    <script>
+        function hanoiTower(n,a,b,c){
+            if(n==1){
+                console.log(`Move disk from ${a} to ${c}`);
+                return;
+            }
+            hanoiTower(n-1,a,c,b);
+            console.log(`Move disk from ${a} to ${c}`);
+            hanoiTower(n-1,b,a,c);
+        }
+
+        hanoiTower(3,'A','B','C'); //2^n-1
+
+    </script>
+</body>
+</html>
