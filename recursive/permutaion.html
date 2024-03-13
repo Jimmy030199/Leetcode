@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permutaion</title>
+</head>
+<body>
+    <script>
+        const swap = (dataList,firstIndex,secondIndex)=>{
+            let temp = dataList[firstIndex];
+            dataList[firstIndex] = dataList[secondIndex];
+            dataList[secondIndex] = temp;
+        }
+        function permutation(dataList,startIndex,endIndex){
+            if(startIndex == endIndex){
+                let str = '';
+                for(let i=0;i<dataList.length;i++){
+                    str=str+dataList[i];
+                }
+                console.log(str)
+            }else{
+                for(let i=startIndex;i<=endIndex;i++){
+                    swap(dataList,startIndex,i);
+                    permutation(dataList,startIndex+1,endIndex);
+                    swap(dataList,startIndex,i);
+                }
+            }
+        }
+
+        let dataList = ['a','b','c','d'];
+        permutation(dataList,0,dataList.length-1); // 24 4*3*2*1=24
+    </script>
+</body>
+</html>
